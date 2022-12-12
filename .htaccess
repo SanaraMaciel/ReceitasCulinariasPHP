@@ -1,0 +1,9 @@
+#solicita que a reescrita de URL seja habilitada
+RewriteEngine on 
+#determina condição de que a URL não corresponda ao caminho de um arquivo, permitindo assim acesso direto a arquivos no servidor
+#Se essa linha for omitida, arquivos de imagem, CSS, javascript etc estarão inacessíveis
+RewriteCond %{REQUEST_FILENAME} !-f
+#adiciona a mesma condição para pastas, permite acesso a pastas dentro da estrutura do projeto
+RewriteCond %{REQUEST_FILENAME} !-d
+#regra de reescrita, expressão regular que permite ao servidor acrescer dinamicamente o index.php ás URls 
+RewriteRule .* index.php/$1 [PT,L]
